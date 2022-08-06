@@ -54,19 +54,19 @@ postcss([
 Say you had CSS that looked like this:
 
 ```css
-	.foo {
-		&:hocus {
-			color: red;
-		}
+.foo {
+	&:hocus {
+		color: red;
 	}
+}
 ```
 If you want to make use of nested statements using [`postcss-nested`](https://github.com/postcss/postcss-nested), you need to load the `postcss-hocus-pocus` ***after:***
 
 ```js
-	postcss([
-		require('postcss-nested'),
-		require('postcss-hocus-pocus')
-	]);
+postcss([
+	require('postcss-nested'),
+	require('postcss-hocus-pocus')
+]);
 ```
 
 Otherwise you're just gonna get a bunch of goofy-looking gobbledegook. In fact, I recommend you put this plugin as late in your load order as possible.
