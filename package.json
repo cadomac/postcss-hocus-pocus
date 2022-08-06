@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "gitlab.com/cadoma/postcss-hocus-pocus"
+    "url": "https://github.com/cadomac/postcss-hocus-pocus.git"
   },
   "keywords": [
     "css",
@@ -21,7 +21,7 @@
   "author": {
     "name": "Cameron MacDonald",
     "email": "cdmacdonalddev@proton.me",
-    "url": "https://gitlab.com/cadoma"
+    "url": "https://github.com/cadomac"
   },
   "contributors": [
     {
