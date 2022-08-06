@@ -1,28 +1,28 @@
-const postcss = require('postcss');
-const selectorParser = require('postcss-selector-parser');
+module.exports = (opts = {}) => {
+  const target = /:[hp]ocus/;
+  return {
+    postcssPlugin: 'postcss-hocus',
+    Rule(rule) {
+      const newSelectors = []
+      rule.selectors.forEach((selector, idx) => {
 
-module.exports = postcss.plugin('postcss-hocus', (opts = {}) => css => {
-  css.walkRules(rule => {
-    rule.selector = selectorParser(selectors => {
-      selectors.walk(node => {
-        const key = node.value;
+        if (target.test(selector)) {
+          const preSelector = selector.slice(0, selector.indexOf(':'));
 
-        if ([ ':hocus', ':pocus' ].includes(key)) {
-          const parent = node.parent;
-          const list = parent.parent;
-          const index = list.nodes.indexOf(parent) + 1;
+          newSelectors.push(`${preSelector}:hover`);
+          newSelectors.push(`${preSelector}:focus`);
 
-          node.value = ':focus';
-          list.nodes.splice(index, 0, parent.clone());
-
-          if (key === ':pocus') {
-            node.value = ':active';
-            list.nodes.splice(index, 0, parent.clone());
+          if (selector.includes(':pocus')) {
+            newSelectors.push(`${preSelector}:active`);
           }
-
-          node.value = ':hover';
+        } else {
+          newSelectors.push(selector)
         }
-      });
-    }).process(rule.selector).result;
-  });
-});
+      })
+
+      rule.selectors = newSelectors
+    }
+  }
+}
+
+module.exports.postcss = true
