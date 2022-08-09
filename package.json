@@ -1,6 +1,6 @@
 {
   "name": "postcss-hocus-pocus",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "postcss plugin that lets you write :hocus instead of :hover, :focus",
   "main": "index.js",
   "scripts": {
