@@ -1,7 +1,7 @@
 module.exports = (opts = {}) => {
   const target = /:[hp]ocus/;
   return {
-    postcssPlugin: 'postcss-hocus',
+    postcssPlugin: 'postcss-hocus-pocus',
     Rule(rule) {
       const newSelectors = []
       rule.selectors.forEach((selector, idx) => {
