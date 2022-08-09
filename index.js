@@ -7,13 +7,20 @@ module.exports = (opts = {}) => {
       rule.selectors.forEach((selector, idx) => {
 
         if (target.test(selector)) {
-          const preSelector = selector.slice(0, selector.indexOf(':'));
 
-          newSelectors.push(`${preSelector}:hover`);
-          newSelectors.push(`${preSelector}:focus`);
+          const colonIndex = selector.indexOf(':')
+          const preSelector = selector.slice(0, colonIndex);
+          let postSelector = ''
+
+          if (selector.length - colonIndex - 1 !== 5) {
+            postSelector = selector.slice(colonIndex+6,)
+          }
+
+          newSelectors.push(`${preSelector}:hover${postSelector}`);
+          newSelectors.push(`${preSelector}:focus${postSelector}`);
 
           if (selector.includes(':pocus')) {
-            newSelectors.push(`${preSelector}:active`);
+            newSelectors.push(`${preSelector}:active${postSelector}`);
           }
         } else {
           newSelectors.push(selector)

@@ -46,7 +46,30 @@ const pocusTest = () => {
     }
 }
 
+const followTest = () => {
+  return async () => {
+    const result = await postcss(hocus()).process(
+      `
+        a:hocus > span, p:hocus .foo {
+          color: red;
+        }
+      `,
+      { from: undefined }
+    );
+
+    assert.is(
+      result.css,
+      `
+        a:hover > span, a:focus > span, p:hover .foo, p:focus .foo {
+          color: red;
+        }
+      `
+    )
+  }
+}
+
 test('should convert `hocus` to `hover` and `focus`', hocusTest())
 test('should convert `pocus` to `hover`, `focus`, and `active`', pocusTest())
+test('should convert `hocus` and retain selectors following it', followTest())
 
 test.run();
